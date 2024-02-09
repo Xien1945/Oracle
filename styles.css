@@ -31,7 +31,6 @@ body {
 /* Landing Image */
 #landing-image-container img {
     max-width: 100%; /* Ensures image does not exceed the width of the container */
-    max-height: 80vh; /* Match the max height with other images */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures the image fits within its container */
     margin-bottom: 0px; /* Adjust this value if there is space between the image and the bottom of the viewport */
@@ -72,6 +71,13 @@ body {
 }
 
 /* Responsive Design */
+/* Media query for desktop screens */
+@media (min-width: 769px) {
+    #landing-image-container img {
+        max-height: 80vh; /* Increase max-height for desktop screens */
+    }
+}
+
 @media (max-width: 768px) {
     #image-container img,
     #landing-image-container img {
