@@ -1,29 +1,98 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: serif, sans-serif;
+    background-color: transparent;
     text-align: center;
-    padding: 20px;
 }
 
+/* Image Container */
+#image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent overflow */
+    width: 100%; /* Full width of the parent element */
+}
+
+/* Images within Container */
+#image-container img {
+    max-width: 100%; /* Scale down if image is too wide for the viewport */
+    max-height: 80vh; /* Limit image height to 80% of the viewport height */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image fits within its container */
+}
+
+/* Landing Image */
+#landing-image-container img {
+    max-width: 100%; /* Ensures image does not exceed the width of the container */
+    max-height: 80vh; /* Match the max height with other images */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image fits within its container */
+    margin-bottom: 0px; /* Adjust this value if there is space between the image and the bottom of the viewport */
+}
+
+/* Card Display */
 #card-display {
+    width: 90%;
+    max-width: 300px; /* You might want to increase this for larger screens */
     margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-    width: 300px;
-    height: 400px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
 }
 
+#card-display img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Button Styles */
 #draw-card-btn {
-    background-color: #007bff;
+    background-color: #270707; /* Dark brownish color */
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    outline: none;
+    display: block; /* Ensures the button doesn't inline with other elements */
+    margin: 20px auto; /* Centers the button and adds space above and below */
 }
 
 #draw-card-btn:hover {
-    background-color: #0056b3;
+    background-color: #4b0c0c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #image-container img,
+    #landing-image-container img {
+        max-height: 60vh; /* Smaller max-height for mobile devices */
+    }
+
+    /* Adjust styles for tablet and mobile */
+    #card-display {
+        width: 95%; /* Allows card display to take more width */
+    }
+
+    #draw-card-btn {
+        font-size: 15px; /* Slightly smaller font size */
+        padding: 10px 18px; /* Slightly smaller padding */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust styles specifically for mobile */
+    #draw-card-btn {
+        font-size: 14px; /* Even smaller font size */
+        padding: 8px 15px; /* Even smaller padding */
+    }
 }

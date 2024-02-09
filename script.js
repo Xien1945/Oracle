@@ -1,35 +1,66 @@
 console.log('Script loaded');
 
-// Fetch and store tarot deck data from the JSON file
-let tarotDeck = [];
+// Array of image file names, excluding the landing image
+const imageFiles = [
+    'back-to-the-drawing-board.jpg',
+    'be-intentional.jpg',
+    'become-curious.jpg',
+    'brainstorm.jpg',
+    'choose-authenticity.jpg',
+    'clean-up.jpg',
+    'do-you.jpg',
+    'dont-overthink-it.jpg',
+    'express-gratitude.jpg',
+    'finetune-and-polish.jpg',
+    'get-playful.jpg',
+    'get-real.jpg',
+    'give-grace.jpg',
+    'have-some-faith.jpg',
+    'improvise.jpg',
+    'keep-going.jpg',
+    'know-your-worth.jpg',
+    'lean-on-community.jpg',
+    'let-it-go.jpg',
+    'level-up.jpg',
+    'log-off.jpg',
+    'move-your-body.jpg',
+    'practice.jpg',
+    'set-some-boundaries.jpg',
+    'show-love.jpg',
+    'slow-down.jpg',
+    'smell-the-roses.jpg',
+    'speak-your-truth.jpg',
+    'surrender-your-ego.jpg',
+    'trust-the-process.jpg',
+    'try-something-new.jpg'
+];
 
-fetch('tarotDeck.json')  // Make sure to use the correct path to your JSON file
-    .then(response => response.json())
-    .then(data => {
-        tarotDeck = data;
-        console.log('Tarot deck loaded:', tarotDeck); // Add this line to check if data is loaded
-    })
-    .catch(error => console.error('Error loading tarot deck:', error));
-
-// Function to randomly draw a card from the deck
-function drawCard() {
-    const randomIndex = Math.floor(Math.random() * tarotDeck.length);
-    return tarotDeck[randomIndex];
+// Function to randomly select an image
+function getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * imageFiles.length);
+    return imageFiles[randomIndex];
 }
 
-// Function to display the selected card
-function displayCard(card) {
-    console.log('Displaying card:', card); // Add this line
+// Function to display the selected image
+function displayImage(imageFileName) {
     const displayElement = document.getElementById('card-display');
-    displayElement.innerHTML = `
-        <img src="${card.imageUrl}" alt="${card.name}" style="max-width: 100%;">
-        <h3>${card.name}</h3>
-        <p>${card.interpretation}</p>
-    `;
+    displayElement.innerHTML = `<img src="images/${imageFileName}" alt="Image" onload="sendHeightToParent()" style="max-width: 100%; height: auto;">`;
 }
 
-// Event listener for the "Draw a Card" button
-document.getElementById('draw-card-btn').addEventListener('click', function() {
-    const card = drawCard();
-    displayCard(card);
-});
+// Function to send the updated height to the parent window
+function sendHeightToParent() {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ iframeHeight: height }, 'https://healgoood.com'); // Replace with your Shopify domain
+}
+
+// Function to handle button click
+function handleButtonClick() {
+    const imageFileName = getRandomImage();
+    displayImage(imageFileName);
+
+    document.getElementById('card-display').style.display = 'block';
+    document.getElementById('landing-image-container').style.display = 'none';
+}
+
+// Add a click event listener to the button
+document.getElementById('draw-card-btn').addEventListener('click', handleButtonClick);

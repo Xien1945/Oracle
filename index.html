@@ -8,10 +8,18 @@
 </head>
 <body>
     <div id="tarot-app">
-        <div id="card-display">
+        <!-- Button Above the Landing Image -->
+        <button id="draw-card-btn">Click Me</button>
+
+        <!-- Landing Image (Initially Shown) -->
+        <div id="landing-image-container">
+            <img src="images/pull-a-card.jpg" alt="Landing Image" id="landing-image">
+        </div>
+        
+        <!-- Card Display (Initially Hidden) -->
+        <div id="card-display" style="display: none;">
             <!-- Card Image and Interpretation will be dynamically inserted here -->
         </div>
-        <button id="draw-card-btn">Draw a Card</button>
     </div>
 
     <script src="script.js"></script> <!-- Link to your JavaScript file -->
